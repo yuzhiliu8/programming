@@ -1,4 +1,4 @@
-# Churchill Competitive Coding Club
+# Repo for programming problems
 
-## Solutions for Competitive Coding Problems
-
+codeforces
+neetcode/leetcode
