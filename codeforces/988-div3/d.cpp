@@ -4,22 +4,21 @@
 
 using namespace std;
 
-void solve(){
-    int n, m, L;
-    cin >> n >> m >> L;
+void solve() {
+  int n, m, L;
+  cin >> n >> m >> L;
 
-    for (int i = 0; i < n; i++){
-        
-    }
+  for (int i = 0; i < n; i++) {
+  }
 }
 
-int main(){
-    int t;
-    cin >> t;
+int main() {
+  int t;
+  cin >> t;
 
-    while (t--){
-        solve();
-    }
+  while (t--) {
+    solve();
+  }
 
-    return 0;
+  return 0;
 }

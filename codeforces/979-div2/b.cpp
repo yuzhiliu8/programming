@@ -2,20 +2,17 @@
 
 using namespace std;
 
-void solve()
-{
-    int n;
-    cin >> n;
+void solve() {
+  int n;
+  cin >> n;
 }
 
-int main()
-{
-    int t;
-    cin >> t;
+int main() {
+  int t;
+  cin >> t;
 
-    while (t--)
-    {
-        solve();
-    }
-    return 0;
+  while (t--) {
+    solve();
+  }
+  return 0;
 }

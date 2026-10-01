@@ -2,7 +2,6 @@
 
 using namespace std;
 
-
 void solve() {
   int n;
   cin >> n;
@@ -13,7 +12,7 @@ void solve() {
   cin >> s;
 
   int l = 0;
-  int r = n-1;
+  int r = n - 1;
 
   int count = 0;
   while (l < r) {
@@ -37,7 +36,6 @@ void solve() {
   }
 
   cout << count << "\n";
-
 }
 
 int main() {
@@ -50,7 +48,6 @@ int main() {
   while (t--) {
     solve();
   }
-
 
   return 0;
 }

@@ -4,7 +4,8 @@ using namespace std;
 
 void solve() {
 
-  int n; cin >> n;
+  int n;
+  cin >> n;
 
   unordered_map<int, int> map;
 
@@ -25,7 +26,7 @@ void solve() {
   // cout << max << '\n';
   for (int i = 0; i < max; ++i) {
     vector<int> vec;
-    for (auto& pair : map) {
+    for (auto &pair : map) {
       if (pair.second > 0) {
         auto it = lower_bound(vec.begin(), vec.end(), pair.first);
         vec.insert(it, pair.first);
@@ -33,7 +34,7 @@ void solve() {
       }
     }
 
-    for (int i = vec.size()-1; i > -1; --i) {
+    for (int i = vec.size() - 1; i > -1; --i) {
       cout << vec[i] << ' ';
     }
   }
@@ -47,7 +48,6 @@ int main() {
   while (t--) {
     solve();
   }
-
 
   return 0;
 }

@@ -4,41 +4,39 @@
 
 using namespace std;
 
-void solve(){
-    int n, m;
-    cin >> n >> m;
-    int arr[n];
+void solve() {
+  int n, m;
+  cin >> n >> m;
+  int arr[n];
 
-    for (int i = 0; i < n; i++){
-        string s;
-        cin >> s;
-        arr[i] = s.length();
-    }
+  for (int i = 0; i < n; i++) {
+    string s;
+    cin >> s;
+    arr[i] = s.length();
+  }
 
-    int sum = 0;
-    int index = 0;
+  int sum = 0;
+  int index = 0;
 
-    while (sum < m && index < n){
-        sum += arr[index];
-        index++;
-    }
+  while (sum < m && index < n) {
+    sum += arr[index];
+    index++;
+  }
 
-    if (sum > m){
-        cout << index-1 << endl;
-    }
-    else {
-        cout << index << endl;
-    }
+  if (sum > m) {
+    cout << index - 1 << endl;
+  } else {
+    cout << index << endl;
+  }
 }
 
-int main(){
-    int t;
-    cin >> t;
+int main() {
+  int t;
+  cin >> t;
 
-    while (t--){
-        solve();
-    }
+  while (t--) {
+    solve();
+  }
 
-    return 0;
+  return 0;
 }
-
