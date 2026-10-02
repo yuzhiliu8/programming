@@ -5,3 +5,4 @@ output.txt
 /usaco_contests
 *.class
 build/
+.cache/

@@ -5,11 +5,17 @@ project(yliu VERSION 1.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Define the executable and its source files
-add_executable(yliu
-    src/main.cpp
-    src/vector.cpp
+add_library(yliu INTERFACE)
+target_include_directories(yliu INTERFACE
+    "${CMAKE_CURRENT_SOURCE_DIR}/include"
 )
+target_compile_features(yliu INTERFACE cxx_std_17)
 
-# Tell CMake where to look for header files (.h)
-target_include_directories(yliu PRIVATE include)
+include(CTest)
+if(BUILD_TESTING)
+    add_subdirectory(test)
+endif()
+
+
+add_executable(yliu_example src/main.cpp)
+target_link_libraries(yliu_example PRIVATE yliu)
