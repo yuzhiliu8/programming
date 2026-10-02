@@ -65,3 +65,57 @@ TEST(VectorTest, TestClear)
   EXPECT_TRUE(v.empty());
   EXPECT_THROW(v[0], std::out_of_range);
 }
+
+
+TEST(VectorTest, TestEquality)
+{
+  yliu::vector<int> v;
+  yliu::vector<int> x;
+
+  EXPECT_TRUE((x == v));
+
+  for (int i = 0; i < 1000; ++i) {
+    v.push_back(i);
+    x.push_back(i);
+  }
+
+  EXPECT_TRUE((x == v));
+}
+
+TEST(VectorTest, TestCopyConstruct)
+{
+  yliu::vector<int> v;
+
+
+  for (int i = 0; i < 1000; ++i) {
+    v.push_back(i);
+  }
+
+  yliu::vector<int> x(v);
+
+  EXPECT_TRUE((x == v));
+  EXPECT_EQ(x.capacity(), v.capacity());
+}
+
+TEST(VectorTest, TestMoveConstruct)
+{
+  yliu::vector<std::string> v;
+
+
+  for (int i = 0; i < 1000; ++i) {
+    v.push_back(std::to_string(i));
+  }
+
+  yliu::vector<std::string> x(std::move(v));
+
+  EXPECT_FALSE((x == v));
+  EXPECT_FALSE(x.capacity() == v.capacity());
+  EXPECT_EQ(v.capacity(), 0);
+  EXPECT_EQ(v.size(), 0);
+  EXPECT_EQ(x.capacity(), 1024);
+  EXPECT_EQ(x.size(), 1000);
+
+  for (int i = 0; i < 1000; ++i) {
+    EXPECT_EQ(x[i], std::to_string(i));
+  }
+}

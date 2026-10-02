@@ -30,9 +30,27 @@ public:
   }
 
   // copy constructor
-  vector(const vector<T>& other);
-  // move constructor. "Steals" resources from other
-  vector(vector<T>&& other);
+  vector(const vector<T>& other)
+  {
+    size_ = other.size_;
+    capacity_ = other.capacity_;
+
+    buffer_ = static_cast<T*>(::operator new(sizeof(T) * capacity_));
+    for (int i = 0; i < size_; ++i) {
+      new (buffer_ + i) T(other[i]);
+    }
+  }
+
+  // move constructor. "Steals" resources from other, and is a lot cheaper than copy constructing
+  vector(vector<T>&& other)
+  {
+    size_ = other.size_;
+    capacity_ = other.capacity_;
+    buffer_ = other.buffer_;
+    other.buffer_ = nullptr;
+    other.size_ = 0;
+    other.capacity_ = 0;
+  }
 
   // destructor
   ~vector()
@@ -61,6 +79,22 @@ public:
     }
 
     return static_cast<const T&>(buffer_[index]);
+  }
+
+  // equality
+  bool operator==(const vector<T>& other) const
+  {
+    if (size_ != other.size_) {
+      return false;
+    }
+
+    for (int i = 0; i < size_; ++i) {
+      if (buffer_[i] != other.buffer_[i]) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
 
@@ -128,7 +162,8 @@ private:
     T* new_buf = static_cast<T*>(::operator new(sizeof(T) * new_cap));
     // move old into new buffer
     for (std::size_t i = 0; i < size_; ++i) {
-      new_buf[i] = buffer_[i];
+      new (new_buf + i) T(std::move(buffer_[i]));
+      buffer_[i].~T();
     }
 
     ::operator delete(buffer_);
